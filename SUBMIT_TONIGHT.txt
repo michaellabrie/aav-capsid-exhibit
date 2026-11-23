@@ -1,0 +1,28 @@
+WHAT TO SUBMIT TONIGHT
+======================
+The instructor asks for a public link that opens directly to the exhibit.
+Do not submit localhost:8000 or a file:// link; neither works for the instructor.
+
+1. Unzip the downloaded AAV_CAPSID_LAB_Submission_Ready.zip.
+2. In VS Code, open the folder aav_capsid_exhibit.
+3. Run python3 -m http.server 8000 in Terminal; verify http://localhost:8000/.
+4. Create a new PUBLIC GitHub repository: aav-capsid-exhibit.
+5. From the open project folder, run:
+
+   git init
+   git add .
+   git commit -m "Complete AAV interactive neural network exhibit"
+   git branch -M main
+   git remote add origin https://github.com/YOUR-USERNAME/aav-capsid-exhibit.git
+   git push -u origin main
+
+6. In GitHub repository Settings > Pages, select Deploy from a branch,
+   branch main, folder /(root), then Save.
+7. Once Pages builds, visit the public live URL (replace username):
+   https://YOUR-USERNAME.github.io/aav-capsid-exhibit/
+8. Test workbench and threshold slider. WebLLM chat requires WebGPU and may
+   download approximately 200 MB on first activation.
+9. Submit the LIVE URL to Canvas, not the zip or repository URL unless your
+   instructor separately asks for it.
+
+See README.md for complete explanation, evaluated model metrics and alternatives.

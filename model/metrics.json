@@ -1,0 +1,28 @@
+{
+  "sample_count": 6000,
+  "train_count": 4200,
+  "validation_count": 900,
+  "test_count": 900,
+  "seed": 20261119,
+  "model": "MLPClassifier (10 \u2192 14 \u2192 8 \u2192 1, ReLU)",
+  "threshold": 0.315,
+  "accuracy": 0.7666666666666667,
+  "baseline_accuracy": 0.5233333333333333,
+  "precision": 0.7054409005628518,
+  "recall": 0.8764568764568764,
+  "f1": 0.7817047817047817,
+  "roc_auc": 0.8611494662450077,
+  "confusion_matrix": [
+    [
+      314,
+      157
+    ],
+    [
+      53,
+      376
+    ]
+  ],
+  "positive_rate_test": 0.4766666666666667,
+  "majority_class": 0,
+  "training_iterations": 369
+}

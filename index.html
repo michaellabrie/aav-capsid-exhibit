@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#090f1c" />
+  <meta name="description" content="AAV Capsid Assembly Lab: an interactive, synthetic-data neural network teaching exhibit." />
+  <title>AAV Capsid Assembly Lab | Neural Network Exhibit</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script type="module" src="assets/app.js"></script>
+</head>
+<body>
+  <a href="#main" class="skip">Skip to main content</a>
+  <div class="shell">
+    <header class="site-header">
+      <a class="identity" href="#top" aria-label="Capsid Lab home">
+        <span class="logo-icon" aria-hidden="true">⬡</span>
+        <span class="identity-text"><strong>CAPSID<span> / </span>LAB</strong><small>NEURAL NETWORK EXHIBIT</small></span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#workbench">Experiment</a><a href="#threshold">Thresholds</a><a href="#cases">Model errors</a><a href="#assistant">Chatbot</a>
+      </nav>
+      <span class="header-tag"><span class="live-dot"></span> SYNTHETIC DATA</span>
+    </header>
+
+    <main id="main">
+      <section id="top" class="hero" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <div class="eyebrow"><span class="small-rule"></span> AN INTERACTIVE BIOCOMPUTATIONAL EXHIBIT <span class="edition">01 / 04</span></div>
+          <h1 id="hero-title">What makes a<br /><em>capsid assemble?</em></h1>
+          <p class="lead">A neural network learns patterns in simulated AAV assembly experiments. Change the conditions, inspect its predictions, and discover why even a good model can be wrong.</p>
+          <div class="hero-actions"><a class="primary-btn" href="#workbench">Open workbench <span aria-hidden="true">↗</span></a><a class="secondary-btn" href="#cases">Inspect a mistake <span aria-hidden="true">→</span></a></div>
+          <div class="hero-disclaimer"><span class="asterisk">*</span> This is a teaching simulation. No experimental assembly measurements or biological discoveries are claimed.</div>
+        </div>
+        <div class="hero-visual" aria-label="Conceptual geometric illustration of a viral capsid">
+          <div class="hero-scanline"></div>
+          <div class="viz-upper"><span>INSTRUMENT 01</span><span>SIMULATED STRUCTURE</span></div>
+          <svg class="capsid-art" viewBox="0 0 520 500" role="img" aria-label="Stylized wireframe polyhedral capsid, for illustration only">
+            <defs><radialGradient id="cg"><stop offset="0%" stop-color="#22d8ce" stop-opacity=".38"/><stop offset="75%" stop-color="#119eaa" stop-opacity=".06"/><stop offset="100%" stop-color="#119eaa" stop-opacity="0"/></radialGradient></defs>
+            <circle cx="260" cy="250" r="235" fill="url(#cg)"/>
+            <g fill="none" stroke="#60e3da" stroke-width="1.4" stroke-linejoin="round" opacity=".78">
+              <polygon points="260,55 427,152 427,347 260,445 93,347 93,152"/>
+              <polygon points="260,55 344,103 344,201 260,249 176,201 176,103"/>
+              <polygon points="260,249 344,201 427,250 344,299"/>
+              <polygon points="260,249 176,201 93,250 176,299"/>
+              <polygon points="260,249 344,299 344,396 260,445 176,396 176,299"/>
+              <path d="M260 55L93 152L176 201L260 249L344 201L427 152L260 55M93 152L93 347L176 299L176 201M427 152L427 347L344 299L344 201M93 347L176 396L260 445L344 396L427 347M176 103L93 250L176 299L260 249L344 299L427 250L344 103M260 55L260 249L260 445M176 103L344 103M176 396L344 396"/>
+            </g>
+            <g fill="#7bf4e5"><circle cx="260" cy="55" r="5"/><circle cx="427" cy="152" r="5"/><circle cx="427" cy="347" r="5"/><circle cx="260" cy="445" r="5"/><circle cx="93" cy="347" r="5"/><circle cx="93" cy="152" r="5"/><circle cx="260" cy="249" r="8"/></g>
+            <circle cx="260" cy="250" r="205" fill="none" stroke="#93bacb" stroke-dasharray="2 9" opacity=".28"/><circle cx="260" cy="250" r="236" fill="none" stroke="#93bacb" opacity=".12"/>
+          </svg>
+          <div class="viz-label viz-label-left"><span class="marker"></span> VP INTERFACE<br/><strong>CONTACT NETWORK</strong></div>
+          <div class="viz-label viz-label-right">T = 1 <span class="viz-sub">GEOMETRIC SCHEMATIC</span></div>
+          <div class="viz-bottom"><span>VP × 60</span><span>STRUCTURE NOT TO SCALE</span><span class="viz-coordinates">[ X: 20 / Y: 06 ]</span></div>
+        </div>
+      </section>
+
+      <section class="stats" aria-label="Model at a glance">
+        <div class="stat"><span class="stat-label">SYNTHETIC SCENARIOS</span><strong id="stat-samples">6,000</strong><small>Reproducibly generated</small></div>
+        <div class="stat"><span class="stat-label">HELD-OUT TEST CASES</span><strong id="stat-test">900</strong><small>Never used to fit the network</small></div>
+        <div class="stat"><span class="stat-label">NEURAL NETWORK ACCURACY</span><strong id="stat-accuracy">—</strong><small>At validation-chosen threshold</small></div>
+        <div class="stat"><span class="stat-label">MAJORITY BASELINE</span><strong id="stat-baseline">—</strong><small>Always predicts one class</small></div>
+      </section>
+
+      <section id="workbench" class="section-block">
+        <div class="section-head"><div><div class="eyebrow"><span class="section-no">01</span> / EXPERIMENT WORKBENCH</div><h2>Run a simulated experiment.</h2><p>Adjust the same inputs the trained network uses. Every change runs the exported neural network directly in your browser, with no server and no retraining.</p></div><div class="section-meta">LIVE MODEL INFERENCE<br/>10 INPUT FEATURES / 2 HIDDEN LAYERS</div></div>
+        <div class="bench-grid">
+          <div class="panel input-panel"><div class="panel-top"><span>INPUT PARAMETERS</span><span class="panel-number">01 — 07</span></div>
+            <div class="field-grid">
+              <label class="field"><span>Synthetic serotype category</span><select id="serotype"><option value="AAV2">AAV2</option><option value="AAV5">AAV5</option><option value="AAV8">AAV8</option><option value="AAV9">AAV9</option></select></label>
+              <div class="field"><span>AAP condition</span><div class="toggle-group" role="group" aria-label="AAP present"><button type="button" id="aap-absent" aria-pressed="false">Absent</button><button type="button" id="aap-present" class="active" aria-pressed="true">Present</button></div></div>
+            </div>
+            <div class="slider-field"><div class="slider-label"><label for="contact">Interface contact score</label><output id="contact-value">0.70</output></div><input id="contact" type="range" min="0.12" max="0.98" step="0.01" value="0.70"><div class="range-ends"><span>LOW CONTACT</span><span>HIGH CONTACT</span></div></div>
+            <div class="slider-field"><div class="slider-label"><label for="stability">VP stability index</label><output id="stability-value">0.75</output></div><input id="stability" type="range" min="0.16" max="0.98" step="0.01" value="0.75"><div class="range-ends"><span>LOW STABILITY</span><span>HIGH STABILITY</span></div></div>
+            <div class="slider-field"><div class="slider-label"><label for="ph">Environment pH</label><output id="ph-value">7.2</output></div><input id="ph" type="range" min="5.8" max="8.0" step="0.1" value="7.2"><div class="range-ends"><span>5.8</span><span>8.0</span></div></div>
+            <div class="slider-field"><div class="slider-label"><label for="salt">Ionic strength (mM)</label><output id="salt-value">145</output></div><input id="salt" type="range" min="75" max="225" step="5" value="145"><div class="range-ends"><span>75 mM</span><span>225 mM</span></div></div>
+            <div class="slider-field"><div class="slider-label"><label for="concentration">VP concentration index</label><output id="concentration-value">0.70</output></div><input id="concentration" type="range" min="0.15" max="0.98" step="0.01" value="0.70"><div class="range-ends"><span>LOW</span><span>HIGH</span></div></div>
+            <button type="button" id="reset" class="text-button">↶ Reset experimental inputs</button>
+          </div>
+          <div class="panel output-panel"><div class="panel-top"><span>PREDICTIVE OUTPUT</span><span class="status-live"><i></i> MODEL ONLINE</span></div>
+            <div class="prediction"><div class="prediction-caption">PREDICTED PROBABILITY <span>ASSEMBLY IN SIMULATION</span></div><div class="probability-row"><strong id="pred-prob">—</strong><span class="unit">%</span></div><div class="probability-track"><span id="probability-bar"></span><i id="probability-threshold"></i></div><div class="prediction-meta"><span>0%<br/>NOT ASSEMBLED</span><span id="pred-label">Loading model…</span><span>100%<br/>ASSEMBLED</span></div></div>
+            <div class="subpanel"><div class="subpanel-head">AAP COUNTERFACTUAL <small>ALL OTHER INPUTS FIXED</small></div><div class="comparison"><div class="compare-row"><span>AAP absent</span><div class="mini-bar"><span id="compare-absent-bar"></span></div><strong id="compare-absent">—</strong></div><div class="compare-row"><span>AAP present</span><div class="mini-bar"><span id="compare-present-bar"></span></div><strong id="compare-present">—</strong></div></div><p id="compare-note" class="interpretation">The two predictions use the same input values except for AAP status.</p></div>
+            <div class="reading-note"><span class="note-symbol">i</span><span>Model outputs are probabilities learned from <b>synthetically generated labels</b>, not experimentally measured assembly yields. A predicted difference is not proof that AAP causes it.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="threshold" class="section-block">
+        <div class="section-head"><div><div class="eyebrow"><span class="section-no">02</span> / DECISION THRESHOLD LAB</div><h2>Catch more. Flag more.</h2><p>The model outputs a probability. You decide which scores are high enough to call “assembled.” Move the threshold to see the trade-off across 900 untouched test scenarios.</p></div><div class="section-meta">HELD-OUT TEST SET<br/>900 CASES / REAL PREDICTION ERRORS</div></div>
+        <div class="threshold-grid">
+          <div class="panel threshold-main"><div class="panel-top"><span>CLASSIFICATION THRESHOLD</span><span>PROBABILITY → DECISION</span></div><div class="threshold-header"><strong id="threshold-big">—</strong><span>Lower the threshold to catch more positives, but expect more false alarms.</span></div><input id="threshold-slider" type="range" min="0.05" max="0.95" step="0.005" value="0.315" aria-label="Classification threshold"><div class="range-ends"><span>MORE SENSITIVE ← 0.05</span><span>0.95 → MORE SELECTIVE</span></div>
+            <div class="curve-head"><span>TRADE-OFF ACROSS THRESHOLDS</span><span><i class="legend-dot teal"></i> RECALL <i class="legend-dot purple"></i> PRECISION</span></div><svg id="trade-chart" class="trade-chart" viewBox="0 0 580 230" role="img" aria-label="Line chart showing precision and recall by classification threshold"></svg><p class="chart-caption">Changing this slider explores decisions after training; it does not retrain the model or change its scores.</p></div>
+          <div class="panel results-panel"><div class="panel-top"><span>HELD-OUT PERFORMANCE</span><span>LIVE RECOUNT</span></div><div class="metric-grid"><div><span>ACCURACY</span><strong id="m-accuracy">—</strong></div><div><span>PRECISION</span><strong id="m-precision">—</strong></div><div><span>RECALL</span><strong id="m-recall">—</strong></div><div><span>F1 SCORE</span><strong id="m-f1">—</strong></div></div><div class="matrix-label">CONFUSION MATRIX <small>ACTUAL × PREDICTED</small></div><div class="matrix"><div class="matrix-corner"></div><div class="matrix-axis">PREDICT: NO</div><div class="matrix-axis">PREDICT: YES</div><div class="matrix-axis">ACTUAL: NO</div><div class="matrix-cell tn"><strong id="m-tn">—</strong><small>True negative</small></div><div class="matrix-cell fp"><strong id="m-fp">—</strong><small>False alarm</small></div><div class="matrix-axis">ACTUAL: YES</div><div class="matrix-cell fn"><strong id="m-fn">—</strong><small>Missed assembly</small></div><div class="matrix-cell tp"><strong id="m-tp">—</strong><small>True positive</small></div></div><button id="restore-threshold" type="button" class="text-button">↶ Restore validation-chosen threshold</button></div>
+        </div>
+      </section>
+
+      <section id="cases" class="section-block">
+        <div class="section-head"><div><div class="eyebrow"><span class="section-no">03</span> / THE MISTAKE MICROSCOPE</div><h2>Investigate a wrong answer.</h2><p>Every network makes mistakes. These examples are actual predictions on held-out simulated test cases, not invented post-hoc examples.</p></div><div class="section-meta">CASE FILES<br/>SELECT A TEST RECORD</div></div>
+        <div class="cases-grid"><div class="cases-menu" id="case-buttons" aria-label="Choose example case"></div><div class="panel case-detail"><div class="panel-top"><span id="case-id">TEST CASE</span><span id="case-kind">EVALUATION</span></div><div class="case-header"><div><span class="muted-label">MODEL SAID</span><strong id="case-pred">—</strong></div><span class="versus">vs.</span><div><span class="muted-label">SYNTHETIC LABEL SAID</span><strong id="case-actual">—</strong></div></div><div class="case-prob-line"><span>Model probability</span><strong id="case-prob">—</strong></div><div class="case-facts" id="case-facts"></div><p class="case-interpretation" id="case-explainer"></p><button id="load-case" type="button" class="primary-btn small-btn">Load inputs into workbench ↗</button></div></div>
+      </section>
+
+      <section id="explain" class="section-block"><div class="section-head"><div><div class="eyebrow"><span class="section-no">04</span> / UNDER THE HOOD</div><h2>How the network learned.</h2><p>A reproducible training pipeline, a simple comparison model, and a test set kept out of model training and threshold selection.</p></div></div>
+        <div class="architecture panel"><div class="architecture-row"><div class="arch-node"><span>INPUT</span><strong>10</strong><small>Numerical + one-hot features</small></div><span class="arch-connector">⟶</span><div class="arch-node"><span>HIDDEN 01</span><strong>14</strong><small>ReLU units</small></div><span class="arch-connector">⟶</span><div class="arch-node"><span>HIDDEN 02</span><strong>8</strong><small>ReLU units</small></div><span class="arch-connector">⟶</span><div class="arch-node highlighted"><span>OUTPUT</span><strong>1</strong><small>Sigmoid probability</small></div></div><p>Input values are standardized using training-set statistics only. Each hidden layer combines learned weights and biases, then applies ReLU. A sigmoid converts the final score to a value between zero and one. The exported weights, scaler, and browser calculations come from the trained Python model.</p></div>
+        <div class="info-grid"><article class="info-card"><span class="info-number">01 / DATA</span><h3>6,000 generated scenarios</h3><p>All labels come from a randomized simulation with serotype categories, AAP condition, interface and stability indices, pH, ionic strength, and concentration. <b>They are not patient or laboratory observations.</b></p></article><article class="info-card"><span class="info-number">02 / EVALUATION</span><h3>Train / validate / test</h3><p><span id="split-text">4,200 training, 900 validation, 900 test.</span> The validation split selected the classification threshold. The test split was used only for final reporting and exhibit case examples.</p></article><article class="info-card"><span class="info-number">03 / COMPARISON</span><h3>Better than guessing one class</h3><p id="baseline-copy">The neural network is compared with a majority-class baseline from the training split. Test accuracy is informative here, but precision and recall show which mistakes it makes.</p></article><article class="info-card"><span class="info-number">04 / LIMITS</span><h3>Educational, not predictive biology</h3><p>The synthetic generating rules include assumptions about AAP dependence. Generalization to real capsid experiments, actual serotypes, and wet-lab conditions has <b>not</b> been demonstrated. Correlation is not causal evidence.</p></article></div>
+      </section>
+
+      <section id="assistant" class="section-block"><div class="section-head"><div><div class="eyebrow"><span class="section-no">BONUS</span> / IN-BROWSER KNOWLEDGE GUIDE</div><h2>Ask the lab assistant.</h2><p>A small pretrained language model runs locally through WebLLM and WebGPU. It receives the exhibit guide as context, not as training data. It is optional so the rest of the website always works.</p></div><div class="section-meta">NO API KEY<br/>LOCAL BROWSER INFERENCE</div></div>
+        <div class="chat-grid"><div class="panel chat-panel"><div class="panel-top"><span>LAB ASSISTANT / WEBLLM</span><span id="chat-state" class="chat-state">NOT ENABLED</span></div><div id="chat-log" class="chat-log" aria-label="Chat conversation" aria-live="polite"><div class="chat-bubble assistant-bubble"><span>LAB ASSISTANT</span>Enable chat when you're ready. The model is downloaded to your browser and then runs locally. The exhibit works normally without it.</div></div><div class="chat-start" id="chat-start"><button id="enable-chat" type="button" class="primary-btn">Enable chat <span aria-hidden="true">↗</span></button><p id="chat-progress">Requires WebGPU and a one-time model download (approximately 200 MB of weights). Chrome or Edge on a desktop GPU is recommended.</p><progress id="chat-progressbar" max="1" value="0" hidden></progress></div><form id="chat-form" class="chat-form" hidden><label class="sr-only" for="chat-input">Question for the assistant</label><input id="chat-input" type="text" maxlength="350" placeholder="Ask about the model, data or mistakes…" required /><button type="submit" id="chat-send" class="send-btn" aria-label="Send chat message">➤</button></form></div><aside class="chat-sidebar"><span class="aside-kicker">START HERE</span><h3>Three questions to test.</h3><button type="button" class="prompt-button" data-question="What does the model predict, and which inputs does it use?">01 <span>What does the model predict, and what are its inputs?</span><b>↗</b></button><button type="button" class="prompt-button" data-question="How does the neural network compare with the baseline on the test set?">02 <span>How does the neural network compare with the baseline?</span><b>↗</b></button><button type="button" class="prompt-button" data-question="Does the exhibit prove that AAP causes better capsid assembly in real experiments?">03 <span>Does this prove AAP causes assembly in real experiments?</span><b>↗</b></button><div class="aside-warning"><strong>CHECK THE ANSWER</strong><p>Small language models can hallucinate. Compare its response with the recorded test results and limitations. If an answer is missing from the guide, it should say so.</p></div><a class="source-link" href="model/metrics.json">View exported evaluation metrics ↗</a></aside></div>
+      </section>
+    </main>
+    <footer class="footer"><div><span class="footer-mark">⬡</span><strong>CAPSID / LAB</strong><span>Interactive neural network learning exhibit</span></div><div>SIMULATED DATA · REPRODUCIBLE PYTHON · BROWSER INFERENCE<br/><a href="https://snsie.github.io/neural-networks/exercise.html" target="_blank" rel="noreferrer">Course exercise ↗</a> · <a href="https://webllm.mlc.ai/docs/user/get_started.html" target="_blank" rel="noreferrer">WebLLM documentation ↗</a></div></footer>
+  </div>
+</body>
+</html>

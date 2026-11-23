@@ -1,0 +1,36 @@
+AAV CAPSID ASSEMBLY LAB — EXHIBIT GUIDE (STUDENT CLASS EXERCISE)
+
+PURPOSE
+This website teaches how a trained feed-forward neural network turns features into a binary probability, how a threshold converts probability into a decision, why baseline comparisons matter, and what mistakes tell us. It uses a simulated adeno-associated virus (AAV) capsid-assembly question as its scientific theme.
+
+DATA AND PROVENANCE
+There are exactly 6,000 synthetically generated assembly scenarios (random generator seed 20261119); these are NOT measured experiments, not a published biological dataset, and not evidence about actual AAV assembly or gene-therapy performance. Inputs are AAV2/AAV5/AAV8/AAV9 category, assembly-activating protein (AAP) presence/absence, synthetic VP interface contact score, synthetic VP stability index, pH, ionic strength in mM, and VP concentration index. For training, AAV type is represented as four one-hot binary inputs; total numerical features = 10.
+
+The simulated binary target is whether an example has label "assembled" (1) or "not assembled" (0), drawn from a stochastic synthetic equation. The generating assumptions include serotype-specific AAP effects, interface/stability effects, environment and random variability. They must not be interpreted as biological findings. Real biological serotypes differ in known AAP-dependence, but our model does not estimate real serotype behavior.
+
+MODEL
+Python scikit-learn MLPClassifier, 10 input features, two hidden layers of 14 and 8 ReLU neurons, one sigmoid binary output, trained with Adam on standardized training features. The model is actually trained on data; the web page performs its saved forward pass directly in JavaScript using exported learned coefficients, intercepts and training means/scales. Changing the interactive experimental parameters runs the SAME trained model, not a made-up formula or table lookup.
+
+SPLITS AND TRAINING
+6,000 unique synthetic scenarios: 4,200 training, 900 validation, 900 test. Stratified, reproducible splitting. Training features standardized using training-only data. Training uses the training split; the threshold is chosen by maximizing F1 on the validation split only; final metrics are computed once on the held-out test set. The website's threshold slider demonstrates changes to test-set classifications but is not used for model selection.
+
+FROZEN EVALUATION RESULTS
+Validation-selected threshold: 0.315 (31.5%). Held-out test sample count 900. Test accuracy = 76.67%, compared with majority-class baseline accuracy = 52.33%. Test precision = 70.54%; test recall = 87.65%; F1 = 78.17%; ROC AUC = 86.11%. Confusion matrix with actual labels as rows and predictions as columns: true negatives 314, false positives 157, false negatives 53, true positives 376. These are computed results for one synthetic seeded run, not biological success rates. The baseline always predicts the majority class in training (not assembled).
+
+MODEL MISTAKE
+The Mistake Microscope includes actual held-out false-positive and false-negative scenarios. False positive: model says assembled but the simulated label is not assembled. False negative: model says not assembled but the simulated label is assembled. A change in classification threshold trades off catching more positives (recall) against raising more false alarms; precision and recall do not always move together. Because labels are probabilistic/noisy, one error does not prove a specific molecular mechanism or feature is responsible.
+
+VISITOR INTERACTION
+Visitors can adjust one AAV serotype and seven conditions: serotype category, AAP status, VP contact score, VP stability, pH, ionic strength, and VP concentration. The predicted assembly probability updates by forward inference on the trained model. The AAP contrast holds other inputs fixed while changing AAP presence; it is a numerical counterfactual only, not a controlled experiment. Visitors can slide a threshold and examine updated confusion matrices, recall, precision, accuracy and F1 for the 900 held-out test samples. Visitors can inspect specific model mistakes or load their inputs.
+
+LIMITATIONS
+All data and labels are synthetic. No sequence data, structural PDB coordinates, measured binding energies, actual assembly yields, gene-therapy patient data, receptor-binding or pathogenicity labels are used. Synthetic features and simulator assumptions do not imply physical causality. The evaluation applies only to synthetic samples from the same generator; real external validation is absent. Model scores are uncalibrated probabilities and could differ with new conditions. The dataset is not a medical decision aid. The simulator is distinct from the author's laboratory research. AAP presence is not enough by itself to explain assembly. A higher model score cannot establish an underlying causal biology.
+
+CHATBOT
+The optional chatbot is a small pretrained language model loaded on visitor request through WebLLM, with in-browser WebGPU computation. Its guide is this document plus live model values. The chatbot does not train on exhibit data, and answers may be incorrect. Visitors should test whether it can correctly explain model inputs, frozen evaluation metrics versus baseline, and limitations. When this guide does not supply an answer the chatbot should say so. It is not a source of experimental AAV advice.
+
+SOURCES AND ATTRIBUTION
+Instructor exercise: https://snsie.github.io/neural-networks/exercise.html
+WebLLM: https://webllm.mlc.ai/docs/user/get_started.html
+Background reading about serotype differences in AAP dependence: https://pmc.ncbi.nlm.nih.gov/articles/PMC5983388/
+This synthetic teaching dataset is created and licensed by the student/project author for this classroom demonstration. It does not derive from any external real-patient or wet-lab dataset. See scripts/train_model.py for the exact reproducible data-generation equation and source code.
